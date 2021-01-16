@@ -7,7 +7,7 @@ Email: pacheco.comp@gmail.com
 
 import torch
 from torch import nn
-from gcell import GCell
+from metablock import MetaBlock
 from metanet import MetaNet
 import warnings
 
@@ -25,11 +25,11 @@ class MyVGGNet (nn.Module):
             if comb_config is None:
                 raise Exception("You must define the comb_config since you have comb_method not None")
 
-            if comb_method == 'gcell':
+            if comb_method == 'metablock':
                 if isinstance(comb_config, int):
                     raise Exception(
                         "comb_config must be a list/tuple to define the number of feat maps and the metadata")
-                self.comb = GCell(comb_config[0], comb_config[1])  # Normally (784, x)
+                self.comb = MetaBlock(comb_config[0], comb_config[1])  # Normally (784, x)
                 self.comb_feat_maps = comb_config[0]
             elif comb_method == 'concat':
                 if not isinstance(comb_config, int):
@@ -96,9 +96,9 @@ class MyVGGNet (nn.Module):
             if self.reducer_block is not None:
                 x = self.reducer_block(x) # feat reducer block. In this case, it must be defined
             x = torch.cat([x, meta_data], dim=1) # concatenation
-        elif isinstance(self.comb, GCell):
+        elif isinstance(self.comb, MetaBlock):
             x = x.view(x.size(0), self.comb_feat_maps, 32, -1).squeeze(-1) # getting the feature maps
-            x = self.comb(x, meta_data.float()) # applying gcell
+            x = self.comb(x, meta_data.float()) # applying MetaBlock
             x = x.view(x.size(0), -1) # flatting
             if self.reducer_block is not None:
                 x = self.reducer_block(x)  # feat reducer block

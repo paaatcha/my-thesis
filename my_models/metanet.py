@@ -15,7 +15,8 @@ import torch
 
 class MetaNet(nn.Module):
     """
-    Implementing the Context Guided Cell (GCell)
+    Implementing the MetaNet approach
+    Fusing Metadata and Dermoscopy Images for Skin Disease Diagnosis - https://ieeexplore.ieee.org/document/9098645
     """
     def __init__(self, in_channels, middle_channels, out_channels):
         super(MetaNet, self).__init__()

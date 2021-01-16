@@ -8,7 +8,6 @@ Function to load the CNN models
 
 from effnet import MyEffnet
 from densenet import MyDensenet
-from googlenet import MyGooglenet
 from mobilenet import MyMobilenet
 from resnet import MyResnet
 from vggnet import MyVGGNet
@@ -53,10 +52,6 @@ def set_model (model_name, num_class, neurons_reducer_block=0, comb_method=None,
 
     elif model_name == 'densenet-121':
         model = MyDensenet(models.densenet121(pretrained=pre_torch), num_class, neurons_reducer_block, freeze_conv,
-                         comb_method=comb_method, comb_config=comb_config)
-
-    elif model_name == 'googlenet':
-        model = MyGooglenet(models.googlenet(pretrained=pre_torch), num_class, neurons_reducer_block, freeze_conv,
                          comb_method=comb_method, comb_config=comb_config)
 
     elif model_name == 'vgg-13':

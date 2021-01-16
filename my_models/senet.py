@@ -7,7 +7,7 @@ Email: pacheco.comp@gmail.com
 
 import torch
 from torch import nn
-from gcell import GCell
+from metablock import MetaBlock
 import warnings
 
 class MySenet (nn.Module):
@@ -22,11 +22,11 @@ class MySenet (nn.Module):
             if comb_config is None:
                 raise Exception("You must define the comb_config since you have comb_method not None")
 
-            if comb_method == 'gcell':
+            if comb_method == 'metablock':
                 if isinstance(comb_config, int):
                     raise Exception(
                         "comb_config must be a list/tuple to define the number of feat maps and the metadata")
-                self.comb = GCell(comb_config[0], comb_config[1])  # Normally (64, x)
+                self.comb = MetaBlock(comb_config[0], comb_config[1])  # Normally (64, x)
                 self.comb_feat_maps = comb_config[0]
             elif comb_method == 'concat':
                 if not isinstance(comb_config, int):
