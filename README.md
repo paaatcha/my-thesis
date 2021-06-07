@@ -4,7 +4,7 @@ In this repository I share the code I developed to my PhD thesis. I provide some
 If you find any bug or have any observation, please, let me know. Don't hesitate to get in touch with me.
 
 - Thesis: `Combining heterogeneous data and deep learning models for skin cancer detection`
-- Link to the thesis: soon
+- Link to the thesis: https://informatica.ufes.br/en/pos-graduacao/PPGI/thesis-details?id=14992
 
 ## Dependencies
 All code is done using Python enviroment. Machine/Deep leaning models are implemented using [Scikit-Learn](https://scikit-learn.org/stable/) and [Pytorch](https://pytorch.org/).
